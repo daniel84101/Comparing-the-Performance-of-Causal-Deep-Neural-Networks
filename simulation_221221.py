@@ -85,7 +85,7 @@ np.savetxt("ltCI.csv", lt_CI, delimiter =", ", fmt ='% s')
 DEM = pd.read_csv('/Users/danielchiang/Dropbox/Rochester/ECON 544/direct.csv', sep="\t", encoding= 'unicode_escape')
 
 # first exercise focus on the first stage of a fuzzy RD
-DEM_working = DEM[['Direct_democracy', 'min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918',                       'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917',                       'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917',                       'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917',                       'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918',                       'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917',                       'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11',                       'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20']]
+DEM_working = DEM[['Direct_democracy', 'min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918', 'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917', 'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917', 'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917', 'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918', 'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917', 'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11', 'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20']]
 DEM_working = DEM_working.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
 fs_atm = []
 fs_CI = []
@@ -94,11 +94,11 @@ ss_CI = []
 
 Y = DEM_working[['Direct_democracy']].to_numpy()
 T = DEM_working[['min_1d']].to_numpy()
-X = DEM_working[['zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918',                 'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917',                 'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917',                 'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917',                 'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918',                 'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917',                 'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11',                 'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20']].to_numpy()
+X = DEM_working[['zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918', 'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917', 'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917', 'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917', 'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918', 'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917', 'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11', 'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20']].to_numpy()
 
 
 # splitting training and validation dataset for the short-term effect
-X_train, X_valid, T_train, T_valid, Y_train, Y_valid = train_test_split(X, T, Y, test_size=0.2, random_state=42,                                                                       stratify=T)
+X_train, X_valid, T_train, T_valid, Y_train, Y_valid = train_test_split(X, T, Y, test_size=0.2, random_state=42, stratify=T)
 
 for i in spec:
     tau_pred, mu0_pred, prob_t_pred, psi_0, psi_1, history, history_ps = causal_net_estimate(
@@ -119,17 +119,17 @@ for i in spec:
     fs_CI.append(CI)
 
 ## then move to the full result
-DEM_working = DEM[['Direct_democracy', 'min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918',                       'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917',                       'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917',                       'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917',                       'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918',                       'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917',                       'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11',                       'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20', 'logcap_poor']]
+DEM_working = DEM[['Direct_democracy', 'min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918', 'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917', 'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917', 'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917', 'poorhouse1917', 'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918', 'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917', 'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11', 'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20', 'logcap_poor']]
 DEM_working = DEM_working.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
 
 
 Y = DEM_working[['logcap_poor']].to_numpy()
 T = DEM_working[['Direct_democracy']].to_numpy()
-X = DEM_working[['min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918',                 'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917',                 'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917',                 'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917',                 'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918',                 'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917',                 'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11',                 'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20']].to_numpy()
+X = DEM_working[['min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918', 'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917', 'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917', 'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917', 'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918', 'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917', 'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11', 'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20']].to_numpy()
 
 
 # splitting training and validation dataset for the short-term effect
-X_train, X_valid, T_train, T_valid, Y_train, Y_valid = train_test_split(X, T, Y, test_size=0.2, random_state=42,                                                                       stratify=T)
+X_train, X_valid, T_train, T_valid, Y_train, Y_valid = train_test_split(X, T, Y, test_size=0.2, random_state=42, stratify=T)
 for i in spec:
     tau_pred, mu0_pred, prob_t_pred, psi_0, psi_1, history, history_ps = causal_net_estimate(
         [X_train, T_train, Y_train], [X_valid, T_valid, Y_valid], [X, T, Y], [60],
@@ -155,7 +155,7 @@ np.savetxt("ssate.csv", ss_atm, delimiter =", ", fmt ='% s')
 np.savetxt("ssCI.csv", ss_CI, delimiter =", ", fmt ='% s')
 
 ## follow on a smaller set of controls
-DEM_working = DEM[['Direct_democracy', 'min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918',                       'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917',                       'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917',                       'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917',                       'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918',                       'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917',                       'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11',                       'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20', 'logcap_poor']]
+DEM_working = DEM[['Direct_democracy', 'min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918', 'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917', 'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917', 'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917', 'poorhouse1917', 'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918', 'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917', 'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11', 'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20', 'logcap_poor']]
 DEM_working = DEM_working.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
 
 
@@ -163,7 +163,7 @@ Y = DEM_working[['logcap_poor']].to_numpy()
 T = DEM_working[['Direct_democracy']].to_numpy()
 X = DEM_working[['min_1d', 'zeropop', 'zeropopsmall']].to_numpy()
 
-X_train, X_valid, T_train, T_valid, Y_train, Y_valid = train_test_split(X, T, Y, test_size=0.2, random_state=0,                                                                       stratify=T)
+X_train, X_valid, T_train, T_valid, Y_train, Y_valid = train_test_split(X, T, Y, test_size=0.2, random_state=0, stratify=T)
 tau_pred, mu0_pred, prob_t_pred, psi_0, psi_1, history, history_ps = causal_net_estimate(
     [X_train, T_train, Y_train], [X_valid, T_valid, Y_valid], [X, T, Y], [30,30],
     dropout_rates=None, batch_size=None, alpha=0., r_par=0., optimizer='Adam', learning_rate=0.0009,
@@ -179,8 +179,6 @@ print(CI_lowerbound)
 print(CI_upperbound)
 
 ## follow on a more local sample
-DEM_working = DEM[['Direct_democracy', 'min_1d', 'zeropop', 'zeropopsmall', 'logcap_poor1918', 'logcap_poor_external1918',                       'logcap_poor_internal1918', 'no_org_citizen1917_share', 'nr_poor_relief1917',                       'nr_old_on_poor_relief1917', 'nr_dir_child_poor_r1917', 'nr_child_on_poor_r1917',                       'nr_fullpoor_1917', 'nr_poor_external1917', 'nr_poor_internal1917',  'poorhouse1917',                       'poorslots1917', 'area1918', 'land_area1918', 'arable_land1918', 'realtaxbase1918',                       'shareagri1917', 'population1918', 'elig_state1917', 'turnout_state1917', 'leftvote1917',                       'dum1', 'dum2', 'dum3', 'dum4', 'dum5', 'dum6', 'dum7', 'dum8', 'dum9', 'dum10', 'dum11',                       'dum12', 'dum13', 'dum14', 'dum15', 'dum16', 'dum17', 'dum18', 'dum19', 'dum20', 'logcap_poor']]
-DEM_working = DEM_working.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
 DEM_working = DEM_working[DEM_working['zeropop']<=20]
 DEM_working = DEM_working[DEM_working['zeropop']>=-20]
 
