@@ -1,3 +1,15 @@
+# This simulation exercise is based on the paper "Deep Neural Networks for Estimation and Inference from Max H. Farrell, TengYuan Liang, and Sanjog Misra. 
+# In their original work, they have proposed a conceptual framework on how to use DNNs to estimate the average treatment effect. And at the last section 
+# of the paper, they have implemented the causal DNN on a large consumer database from a US retailer and estimated the effect of a randomized treatment 
+# assignment over an advertisement campaign. 
+
+# This exercise tests how does this metod work on two significantly smaller samples: one with random assignments (thus, enough variation when conditional
+# on one covariates or more than one variables), the other one with a regressional discontinuity nature (no variation when condidtional on the running 
+# variable)
+
+# Note: The script is done on 2022 Feb, the syntax may subject to any version update after 2022 Feb.
+# Note: The outcome of the exercise is upon request
+
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
